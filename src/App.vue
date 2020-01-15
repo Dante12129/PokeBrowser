@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 import PokemonList from "@/components/PokemonList";
 import API from "@/js/api";
 import Constants from "@/js/contants";
@@ -14,9 +16,9 @@ export default {
   components: {
     PokemonList
   },
+  computed: mapState(['pokemon']),
   data: function() {
     return {
-      pokemon: []
     };
   },
   methods: {
@@ -25,16 +27,14 @@ export default {
 
       for (let i = Constants.POKEMON_MIN; i < Constants.POKEMON_MAX; ++i) {
         promises.push(new Promise((resolve) => {
-          API.getPokemon(i).then(poke => {
-            this.pokemon.push(poke);
+          API.getPokemon(i).then(p => {
+            this.$store.commit('insertPokemon', p);
             resolve();
           });
         }));
       }
 
-      Promise.all(promises).then(() => this.pokemon.sort((a, b) => {
-        return a.id < b.id ? -1 : 1;
-      }));
+      Promise.all(promises).then(() => this.$store.commit('sort'));
     }
   },
   async mounted() {
