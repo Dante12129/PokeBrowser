@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import App from './App.vue'
+import Pokemon from "@/js/pokemon";
 
 Vue.config.productionTip = false;
 
@@ -15,14 +16,14 @@ new Vue({
     },
     getters: {
       p: state => {
-        return state.pokemon[state.current] ? state.pokemon[state.current] : {name:"Select A Pokemon", id: 0, type:"None"}
+        return state.pokemon[state.current] ? state.pokemon[state.current] : Pokemon.emptyPokemon
       }
     },
     mutations: {
       clear(state) {
         state.pokemon.length = 0;
         state.current = undefined;
-        state.pokemon.push({name:"Select A Pokemon", id: 0, type:"None"});
+        state.pokemon.push(Pokemon.emptyPokemon);
       },
       insertPokemon(state, p) {
        state.pokemon.push(p);
