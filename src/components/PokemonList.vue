@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Pokemon</h1>
-    <p v-if="!loaded">loading...</p>
+    <p v-if="!loaded">Loading...</p>
     <ul v-if="loaded">
       <li v-for="p in pokemon" :key="p.id" @click="setPokemon(p.id)">{{ p.name.charAt(0).toUpperCase() + p.name.slice(1) }}</li>
     </ul>

@@ -29,6 +29,7 @@ export default {
     async loadAllPokemon() {
       let promises = [];
 
+      this.$store.commit('clear');
       for (let i = Constants.POKEMON_MIN; i < Constants.POKEMON_MAX; ++i) {
         promises.push(new Promise((resolve) => {
           API.getPokemon(i).then(p => {

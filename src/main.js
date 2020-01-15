@@ -22,6 +22,10 @@ new Vue({
       }
     },
     mutations: {
+      clear(state) {
+        state.pokemon.length = 0;
+        state.current = undefined;
+      },
       insertPokemon(state, p) {
        state.pokemon.push(p);
       },
