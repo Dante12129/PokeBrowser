@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="p in pokemon" :key="p">{{ p }}</li>
+    <li v-for="p in pokemon" :key="p.id">{{ p.name }} ({{ p.id }})</li>
   </ul>
 </template>
 

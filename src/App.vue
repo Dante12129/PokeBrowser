@@ -21,8 +21,8 @@ export default {
   },
   created: function() {
     for (let i = Constants.POKEMON_MIN; i < Constants.POKEMON_MAX; ++i) {
-      API.getPokemon(i).then(json => {
-        this.pokemon.push(json.name)
+      API.getPokemon(i).then(poke => {
+        this.pokemon.push(poke)
       });
     }
   }
