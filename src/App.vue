@@ -1,12 +1,14 @@
 <template>
   <div id="app">
     <Pokemon :name="name" :id="id" />
+    <button @click="fetchNew">Find A Pokemon</button>
   </div>
 </template>
 
 <script>
 import Pokemon from "@/components/Pokemon";
-import Utils from "@/js/Utils.js";
+import Utils from "@/js/utils.js";
+import Constants from "@/js/contants.js"
 
 export default {
   name: 'app',
@@ -19,12 +21,17 @@ export default {
       id: 0
     };
   },
+  methods: {
+    fetchNew: function () {
+      fetch(`https://pokeapi.co/api/v2/pokemon/${Utils.randomInt(Constants.POKEMON_MIN, Constants.POKEMON_MAX)}/`).then(response => response.json()).then(json => {
+        console.log(json);
+        this.name = json['name'];
+        this.id = json['id'];
+      });
+    }
+  },
   created: function() {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${Utils.randomInt(1, 807)}/`).then(response => response.json()).then(json => {
-      console.log(json);
-      this.name = json['name'];
-      this.id = json['id'];
-    });
+    this.fetchNew()
   }
 }
 </script>
@@ -35,7 +42,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: #83b7e9;
 }
 </style>
