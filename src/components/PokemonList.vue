@@ -1,7 +1,10 @@
 <template>
-  <ul>
-    <li v-for="p in pokemon" :key="p.id">{{ p.name }} ({{ p.id }})</li>
-  </ul>
+  <div>
+    <h1>Pokemon</h1>
+    <ul>
+      <li v-for="p in pokemon" :key="p.id">{{ p.name }} ({{ p.id }})</li>
+    </ul>
+  </div>
 </template>
 
 <script>

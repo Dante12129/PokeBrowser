@@ -19,23 +19,36 @@ export default {
       pokemon: []
     };
   },
-  created: function() {
-    for (let i = Constants.POKEMON_MIN; i < Constants.POKEMON_MAX; ++i) {
-      API.getPokemon(i).then(poke => {
-        this.pokemon.push(poke)
-      });
+  methods: {
+    async loadAllPokemon() {
+      let promises = [];
+
+      for (let i = Constants.POKEMON_MIN; i < Constants.POKEMON_MAX; ++i) {
+        promises.push(new Promise((resolve) => {
+          API.getPokemon(i).then(poke => {
+            this.pokemon.push(poke);
+            resolve();
+          });
+        }));
+      }
+
+      Promise.all(promises).then(() => this.pokemon.sort((a, b) => {
+        return a.id < b.id ? -1 : 1;
+      }));
     }
+  },
+  async mounted() {
+    setTimeout(this.loadAllPokemon, 1500);
   }
 }
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Major+Mono+Display&display=swap');
+
 #app {
   font-family: 'Major Mono Display', monospace;
-  /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /*text-align: center;*/
-  /*color: #83b7e9;*/
 }
 </style>
