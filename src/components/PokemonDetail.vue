@@ -12,7 +12,7 @@ import {mapGetters} from "vuex";
 
 export default {
   name: "PokemonDetail",
-  computed: mapGetters(['p']),
+  computed: mapGetters(['p'])
 }
 </script>
 
