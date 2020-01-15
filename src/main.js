@@ -11,11 +11,11 @@ new Vue({
   store: new Vuex.Store({
     state: {
       pokemon: [],
-      current: Number
+      current: undefined
     },
     getters: {
       name: state => {
-        return state.pokemon[state.current] ? state.pokemon[state.current].name : "none";
+        return state.pokemon[state.current-1] ? state.pokemon[state.current-1].name : "Select A Pokemon";
       },
       id: state => {
         return state.current;

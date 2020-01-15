@@ -1,8 +1,9 @@
 <template>
   <div>
     <h1>Pokemon</h1>
-    <ul>
-      <li v-for="p in pokemon" :key="p.id" @click="setPokemon(p.id)">{{ p.name }} ({{ p.id }})</li>
+    <p v-if="!loaded">loading...</p>
+    <ul v-if="loaded">
+      <li v-for="p in pokemon" :key="p.id" @click="setPokemon(p.id)">{{ p.name }}</li>
     </ul>
   </div>
 </template>
@@ -11,7 +12,8 @@
 export default {
   name: "PokemonList",
   props: {
-    pokemon: Array
+    pokemon: Array,
+    loaded: Boolean
   },
   methods: {
     setPokemon(id) {
@@ -24,6 +26,7 @@ export default {
 <style scoped>
   ul {
     list-style: none;
+    display: inline;
   }
 
   li:hover {

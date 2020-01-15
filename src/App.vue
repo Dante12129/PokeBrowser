@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <PokemonList :pokemon="pokemon"/>
-    <PokemonDetail/>
+    <PokemonList id="left" :pokemon="pokemon" :loaded="loaded"/>
+    <PokemonDetail id="right"/>
   </div>
 </template>
 
@@ -22,6 +22,7 @@ export default {
   computed: mapState(['pokemon']),
   data: function() {
     return {
+      loaded: false
     };
   },
   methods: {
@@ -37,7 +38,10 @@ export default {
         }));
       }
 
-      Promise.all(promises).then(() => this.$store.commit('sort'));
+      Promise.all(promises).then(() => {
+        this.$store.commit('sort');
+        this.loaded = true;
+      });
     }
   },
   async mounted() {
@@ -53,7 +57,16 @@ export default {
   font-family: 'Major Mono Display', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-align: center;
 
   display: flex;
+  justify-content: space-evenly;
+}
+
+#left {
+  width: 10%;
+}
+#right {
+  width: 80%;
 }
 </style>
