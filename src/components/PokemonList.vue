@@ -3,7 +3,7 @@
     <h1>Pokemon</h1>
     <p v-if="!loaded">Loading...</p>
     <ul v-if="loaded">
-      <li v-for="p in pokemon" :key="p.id" @click="setPokemon(p.id)">{{ p.name.charAt(0).toUpperCase() + p.name.slice(1) }}</li>
+      <li v-for="p in pokemon" :key="p.id" @click="setPokemon(p.id)" :class="p.type">{{ p.name.charAt(0).toUpperCase() + p.name.slice(1) }}</li>
     </ul>
   </div>
 </template>
@@ -24,15 +24,17 @@ export default {
 </script>
 
 <style scoped>
-  ul {
-    list-style: none;
-    padding: 0;
+  @import "../assets/types.css";
 
-    height: 80vh;
-    overflow-y: scroll;
-  }
+ul {
+  list-style: none;
+  padding: 0;
 
-  li:hover {
-    background: #eeeeee;
-  }
+  height: 80vh;
+  overflow-y: scroll;
+}
+
+li:hover {
+  background: #eeeeee;
+}
 </style>
