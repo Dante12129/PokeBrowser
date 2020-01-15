@@ -64,7 +64,7 @@ export default {
 }
 
 #left {
-  width: 10%;
+  width: 15%;
 }
 #right {
   width: 80%;

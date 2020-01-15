@@ -26,7 +26,11 @@ export default {
 <style scoped>
   ul {
     list-style: none;
-    display: inline;
+    /*display: inline;*/
+    display: inline-block;
+
+    height: 75vh;
+    overflow-y: scroll;
   }
 
   li:hover {
