@@ -11,20 +11,18 @@ new Vue({
   store: new Vuex.Store({
     state: {
       pokemon: [],
-      current: undefined
+      current: 0
     },
     getters: {
-      name: state => {
-        return state.pokemon[state.current-1] ? state.pokemon[state.current-1].name : "Select A Pokemon";
-      },
-      id: state => {
-        return state.current;
+      p: state => {
+        return state.pokemon[state.current] ? state.pokemon[state.current] : {name:"Select A Pokemon", id: 0, type:"None"}
       }
     },
     mutations: {
       clear(state) {
         state.pokemon.length = 0;
         state.current = undefined;
+        state.pokemon.push({name:"Select A Pokemon", id: 0, type:"None"});
       },
       insertPokemon(state, p) {
        state.pokemon.push(p);
