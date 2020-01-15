@@ -2,23 +2,23 @@
   <div>
     <h1>Pokemon</h1>
     <ul>
-      <li v-for="p in pokemon" :key="p.id" @click="console.log(p.name)">{{ p.name }} ({{ p.id }})</li>
+      <li v-for="p in pokemon" :key="p.id" @click="setPokemon(p.id)">{{ p.name }} ({{ p.id }})</li>
     </ul>
   </div>
 </template>
 
 <script>
-  export default {
-    name: "PokemonList",
-    props: {
-      pokemon: Array
-    },
-    data: function () {
-      return {
-        console: console
-      }
+export default {
+  name: "PokemonList",
+  props: {
+    pokemon: Array
+  },
+  methods: {
+    setPokemon(id) {
+      this.$store.commit('setCurrent', id);
     }
   }
+}
 </script>
 
 <style scoped>

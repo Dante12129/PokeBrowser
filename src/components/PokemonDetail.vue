@@ -6,13 +6,12 @@
 </template>
 
 <script>
-  export default {
-    name: "Pokemon",
-    props: {
-      name: String,
-      id: Number
-    }
-  }
+import {mapGetters} from "vuex";
+
+export default {
+  name: "PokemonDetail",
+  computed: mapGetters(['name', 'id']),
+}
 </script>
 
 <style scoped>

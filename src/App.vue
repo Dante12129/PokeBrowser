@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <PokemonList :pokemon="pokemon"/>
+    <PokemonDetail/>
   </div>
 </template>
 
@@ -8,12 +9,14 @@
 import {mapState} from "vuex";
 
 import PokemonList from "@/components/PokemonList";
+import PokemonDetail from "@/components/PokemonDetail";
 import API from "@/js/api";
 import Constants from "@/js/contants";
 
 export default {
   name: 'app',
   components: {
+    PokemonDetail,
     PokemonList
   },
   computed: mapState(['pokemon']),
@@ -50,5 +53,7 @@ export default {
   font-family: 'Major Mono Display', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  display: flex;
 }
 </style>
