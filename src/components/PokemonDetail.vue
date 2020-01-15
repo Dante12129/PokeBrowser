@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ name }}</h1>
+    <h1>{{ name.charAt(0).toUpperCase() + name.slice(1) }}</h1>
     <p>{{ id }}</p>
   </div>
 </template>
